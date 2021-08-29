@@ -2,7 +2,7 @@ let page = 0;
 
 function storyLoad() {
     $.ajax({
-        url: `/api/post/likesPost?page=${page}`,
+        url: `/api/post/likes?page=${page}`,
         dataType: "json"
     }).done(res => {
         if(res.totalElements == 0) {
@@ -31,7 +31,7 @@ $(window).scroll(() => {
 
 function getLikesItem(post) {
     let item = `
-        <div class="img-box" onclick="postPopup(${post.id}, '.modal-post')" >                   
+        <div class="img-box" onclick="postPopup(${post.id}, '.modal-post')" >
             <img src="/upload/${post.postImgUrl}" onerror="this.src='/img/default_profile.jpg';" />
                 <div class="comment">
                     <a> <i class="fas fa-heart"></i><span>${post.likesCount}</span></a>
@@ -65,7 +65,7 @@ function modalClose() {
 function getPostModalInfo(postInfoDto) {
     let item = `
     <div class="subscribe-header">
-            <a href="/user/profile?id=${postInfoDto.postUploader.id}"><img class="post-img-profile pic" src="/profile_imgs/${postInfoDto.postUploader.profileImgUrl}" onerror="this.src='/img/default_profile.jpg'""></a>  
+            <a href="/user/profile?id=${postInfoDto.postUploader.id}"><img class="post-img-profile pic" src="/profile_imgs/${postInfoDto.postUploader.profileImgUrl}" onerror="this.src='/img/default_profile.jpg'""></a>
             <span>${postInfoDto.postUploader.name}</span> `;
     item += `<button class="exit" onclick="modalClose()"><i class="fas fa-times"></i></button>`
     if(postInfoDto.uploader) {
@@ -147,7 +147,7 @@ function toggleLike(postId) {
     } else { // 좋아요취소 하겠다
         $.ajax({
             type: "delete",
-            url: `/api/post/${postId}/unLikes`,
+            url: `/api/post/${postId}/likes`,
             dataType: "text"
         }).done(res=>{
             let likeCountStr = $("#storyLikeIcon").text();
@@ -197,6 +197,7 @@ function addComment(postId) {
         commentList.append(content);
     }).fail(error=>{
         console.log("오류", error);
+        alert(error.responseText);
     });
 
     commentInput.val(""); // 인풋 필드를 깨끗하게 비워준다.

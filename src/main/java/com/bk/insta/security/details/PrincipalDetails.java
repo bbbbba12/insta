@@ -13,4 +13,8 @@ public class PrincipalDetails extends org.springframework.security.core.userdeta
     public User getUser() {
         return user;
     }
+
+    public void updateUser(User user) {
+        this.user = user;
+    }
 }

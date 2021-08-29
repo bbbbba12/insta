@@ -1,6 +1,6 @@
 package com.bk.insta.controller;
 
-import com.bk.insta.domain.dto.UserSignupDto;
+import com.bk.insta.domain.dto.user.UserSignupDto;
 import com.bk.insta.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -43,7 +43,7 @@ public class HomeController {
         return "login";
     }
 
-    //메인 sroty 화면으로 이동
+    //메인 story 화면으로 이동
     @GetMapping({"/", "post/story"})
     public String story() {
         return "post/story";

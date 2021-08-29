@@ -1,33 +1,30 @@
 package com.bk.insta.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-
 import java.sql.Timestamp;
 
-import static javax.persistence.FetchType.*;
-
 @Data
-@Entity
-public class Likes {
-
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "post_id")
-    private Post post;
+    private String text;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne
+    @JsonIgnoreProperties({"posts"})
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
+
     @CreationTimestamp
     private Timestamp createDate;
-    @UpdateTimestamp
-    private Timestamp updateDate;
+
 }

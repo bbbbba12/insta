@@ -14,9 +14,9 @@ public class Tag {
     private int id;
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="post_id")
-    private Post post;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="post_id")
+//    private Post post;
 
     @CreationTimestamp
     private Timestamp createDate;

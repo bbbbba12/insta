@@ -28,10 +28,10 @@
                 <textarea class="input_upload" th:text="${postDto.text}" name="text" id="text" rows="5"> </textarea>
                 <input type="text" th:value="${postDto.tag}" placeholder="태그. 공백 없이 ,로 구분하여 입력해주세요." name="tag" id="tag" />
             </div>
-            <!--사진설명end-->
+            <!--사진설명 end-->
             <button id="btn_change" class="cta blue" >수정</button>
         </form>
-        <form class="delete-form" action="/post/delete" method="post">
+        <form class="delete-form" action="/post/delete" method="delete">
             <input type="hidden" id="postId" name="postId" th:value="${postDto.id}">
             <button id="btn_delete" class="cta blue" >삭제</button>
         </form>
